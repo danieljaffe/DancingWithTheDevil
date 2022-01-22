@@ -53,8 +53,22 @@ sysinfo.txt
 
 # Builds
 *.apk
+*.aab
 *.unitypackage
+*.app
 
 # Crashlytics generated file
 crashlytics-build.properties
 
+# Packed Addressables
+/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
+
+# Jet Brains
+.idea
+
+# Unity complications
+*UserSettings/*
+*.dwlt
+
+# Mac junk
+.DS_Store
