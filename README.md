@@ -1,4 +1,4 @@
-# Team 7
+# Team 7 - Dancing with the Devil
 The UCLA x UCSD Game Jam! See https://itch.io/jam/ucla-x-ucsd
 
 ## Team members & Discord names:
