@@ -1,7 +1,7 @@
-# Rhythm of the Night
+# Team 7
 The UCLA x UCSD Game Jam! See https://itch.io/jam/ucla-x-ucsd
 
-## Team members & Discord name:
+## Team members & Discord names:
 Fiona Chen - bunn_lord#6698  
 Simon Guo - Ximeng.g#4522  
 Evan Ibarra - pissboy the anointed one#9999  
