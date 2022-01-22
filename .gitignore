@@ -72,3 +72,9 @@ crashlytics-build.properties
 
 # Mac junk
 .DS_Store
+
+Dancing_with_the_Devil/Library/
+
+Dancing_with_the_Devil/Logs/
+
+Dancing_with_the_Devil/UserSettings/
