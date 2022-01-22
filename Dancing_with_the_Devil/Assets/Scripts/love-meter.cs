@@ -8,10 +8,10 @@ public class Health : MonoBehaviour
     [SerializeField] private bool isGameOver;
 
     // Damages your love
-    public void DamageLove(int damage)
+    public void DamageLove(int love)
     {
         // Updates health
-        curLove -= damage;
+        curLove -= love;
         
         // Prevents health over maximum
         if (curLove > maxLove)
