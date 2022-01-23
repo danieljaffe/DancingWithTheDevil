@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private Conductor conductor;
+    [SerializeField] private BeatManager beatManager;
+    
+    // Lifecycle
     void Start()
     {
         
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         
+    }
+    
+    //Events
+
+    void On_1()
+    {
+        beatManager.CheckNote();
+    }
+
+    void OnTest()
+    {
+        conductor.Play();
     }
 }

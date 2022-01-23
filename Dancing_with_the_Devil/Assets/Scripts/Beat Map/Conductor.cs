@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class Conductor : MonoBehaviour
 {
-    [SerializeField] private float songBpm { get; }
+
+    [SerializeField] private float songBpm = 60f;
     
     private AudioSource musicSource;
     
@@ -17,6 +19,7 @@ public class Conductor : MonoBehaviour
     private bool playing;
     
     //Lifecycle
+
     void Start()
     {
         //Load the AudioSource attached to the Conductor GameObject
@@ -59,7 +62,7 @@ public class Conductor : MonoBehaviour
 
     //Getters and Setters
 
-    float getSongPositionInBeats()
+    public float getSongPositionInBeats()
     {
         return songPositionInBeats;
     }

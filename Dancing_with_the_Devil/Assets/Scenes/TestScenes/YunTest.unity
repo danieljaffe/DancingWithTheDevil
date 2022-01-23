@@ -123,6 +123,52 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &299965482
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 299965483}
+  - component: {fileID: 299965484}
+  m_Layer: 0
+  m_Name: Beat Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &299965483
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299965482}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.285882, y: -0.14766681, z: -0.012430737}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &299965484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299965482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8323e3614d7d5c94da63ae9ad593be65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  note: {fileID: 4990465705067829564, guid: 0ed516041c0f61946b3855ec25edd0df, type: 3}
+  conductor: {fileID: 1353664563}
 --- !u!1 &1005817438
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,7 +266,7 @@ GameObject:
   - component: {fileID: 1353664563}
   m_Layer: 0
   m_Name: Music Player
-  m_TagString: Untagged
+  m_TagString: Music Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -237,6 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cfa49be163612542818f5586458293b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  songBpm: 140
 --- !u!82 &1353664564
 AudioSource:
   m_ObjectHideFlags: 0
@@ -248,7 +295,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ccc5f481f2d282449ac8b777c83948b0, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -358,6 +405,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1790656156}
   - component: {fileID: 1790656155}
+  - component: {fileID: 1790656157}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Untagged
@@ -377,6 +425,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6179fd8db68fca447a5d9e5f97681af7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  conductor: {fileID: 1353664563}
+  beatManager: {fileID: 299965484}
 --- !u!4 &1790656156
 Transform:
   m_ObjectHideFlags: 0
@@ -392,3 +442,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1790656157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790656154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 31f9c3d99c4a59b4da5a417e0a8f8950, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
