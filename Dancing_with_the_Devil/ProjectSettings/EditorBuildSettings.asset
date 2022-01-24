@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Title Screen.unity
-    guid: cf446d71968e3cf4c8bc1607525076de
+    path: Assets/Scenes/BuildScenes/VisNov.unity
+    guid: 34f89208d68c2254fa40751203b0db00
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/BuildScenes/RhythmGame.unity
+    guid: 22d7a6393837f564fb6eb42f21f1e39a
   m_configObjects: {}

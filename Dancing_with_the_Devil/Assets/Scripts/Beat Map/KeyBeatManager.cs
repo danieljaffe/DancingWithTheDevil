@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class KeyBeatManager : MonoBehaviour
 {
-    private float spawnBeats = 1;
+    private float spawnBeats = 1f;
     
     private float inputRange = 0.5f;
     private float anticipationBeats = 2f;
@@ -39,6 +39,7 @@ public class KeyBeatManager : MonoBehaviour
     
     void Update()
     {
+        Debug.Log(conductor.getSongPositionInBeats() > beatMap[currentNote] - anticipationBeats - spawnBeats);
         if (currentNote < beatMap.Length && conductor.getSongPositionInBeats() > beatMap[currentNote] - anticipationBeats - spawnBeats)
         {
             GameObject n = Instantiate(note, Vector3.zero, Quaternion.identity, transform);

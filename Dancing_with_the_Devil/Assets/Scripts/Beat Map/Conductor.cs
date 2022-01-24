@@ -16,6 +16,8 @@ public class Conductor : MonoBehaviour
     private float songPositionInBeats;
     private float dspSongTime;
 
+    private float beatsSinceLastBPMChange;
+
     private bool playing;
     
     //Lifecycle
@@ -37,7 +39,9 @@ public class Conductor : MonoBehaviour
             songPosition = (float) (AudioSettings.dspTime - dspSongTime);
 
             //determine how many beats since the song started
-            songPositionInBeats = songPosition / secPerBeat;
+            songPositionInBeats = beatsSinceLastBPMChange + songPosition / secPerBeat;
+            
+            
         }
     }
     
@@ -69,9 +73,13 @@ public class Conductor : MonoBehaviour
 
     public void setBPM(float bpm)
     {
+        beatsSinceLastBPMChange = getSongPositionInBeats();
+        
         songBpm = bpm;
 
         //Calculate the number of seconds in each beat
         secPerBeat = 60f / songBpm;
+        
+        dspSongTime = (float)AudioSettings.dspTime;
     }
 }
