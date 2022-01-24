@@ -57,7 +57,7 @@ public class StepmaniaParser
         setBpms = bpmMap;
         
         //Notes
-        string notes = diffnotes[0];
+        string notes = diffnotes[1];
 
         string[] lines = notes
             .Split("\n").Skip(6).SkipLast(2).ToArray();
