@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/BuildScenes/VisNov.unity
+    guid: 34f89208d68c2254fa40751203b0db00
+  - enabled: 1
+    path: Assets/Scenes/BuildScenes/RhythmGame.unity
+    guid: 22d7a6393837f564fb6eb42f21f1e39a
   m_configObjects: {}
