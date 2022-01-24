@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class Beat : MonoBehaviour
 {
+    private float spawnBeats;
     private float startBeat;
     private float anticipationBeats;
 
@@ -12,10 +13,11 @@ public class Beat : MonoBehaviour
 
     private Conductor conductor;
 
-    public void Init(float startBeat, float anticipationBeats)
+    public void Init(float startBeat, float anticipationBeats, float spawnBeats)
     {
         this.startBeat = startBeat;
         this.anticipationBeats = anticipationBeats;
+        this.spawnBeats = spawnBeats;
     }
 
     // Start is called before the first frame update
@@ -31,6 +33,16 @@ public class Beat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (conductor.getSongPositionInBeats() >= startBeat - anticipationBeats - spawnBeats &&
+            conductor.getSongPositionInBeats() <= startBeat - anticipationBeats)
+        {
+            float percentLeft = 1 - (startBeat - anticipationBeats - conductor.getSongPositionInBeats())/spawnBeats;
+            
+            //Start playing the current animation from wherever the current conductor loop is
+            animator.Play("Anticipation", -1, percentLeft);
+            //Set the speed to 0 so it will only change frames when you next update it
+            animator.speed = 0;
+        }
         if (conductor.getSongPositionInBeats() >= startBeat - anticipationBeats && conductor.getSongPositionInBeats() <= startBeat)
         {
             float percentLeft = 1 - (startBeat - conductor.getSongPositionInBeats())/anticipationBeats;
@@ -43,9 +55,14 @@ public class Beat : MonoBehaviour
 
         if (conductor.getSongPositionInBeats() > startBeat)
         {
-            animator.SetTrigger("Drop");
+            animator.Play("Drop");
             
             animator.speed = 1.2f;
         }
+    }
+
+    public void Destroy()
+    {
+        GameObject.Destroy(gameObject);
     }
 }

@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class KeyBeatManager : MonoBehaviour
 {
+    private float spawnBeats = 1;
+    
     private float inputRange = 0.5f;
     private float anticipationBeats = 2f;
 
@@ -13,13 +15,13 @@ public class KeyBeatManager : MonoBehaviour
     
     private Conductor conductor;
     
-    private int[] beatMap;
+    private float[] beatMap;
 
     private SortedList<int, GameObject> activeNotes = new();
     private int currentNote = 0;
     private int lastNote = -1;
     
-    public void Init(Conductor c, int[] beatMap, float inputRange, float anticipationBeats)
+    public void Init(Conductor c, float[] beatMap, float inputRange, float anticipationBeats)
     {
         this.conductor = c;
         this.beatMap = beatMap;
@@ -37,10 +39,10 @@ public class KeyBeatManager : MonoBehaviour
     
     void Update()
     {
-        if (currentNote < beatMap.Length && conductor.getSongPositionInBeats() > beatMap[currentNote] - anticipationBeats)
+        if (currentNote < beatMap.Length && conductor.getSongPositionInBeats() > beatMap[currentNote] - anticipationBeats - spawnBeats)
         {
             GameObject n = Instantiate(note, Vector3.zero, Quaternion.identity, transform);
-            n.GetComponent<Beat>().Init(beatMap[currentNote], anticipationBeats);
+            n.GetComponent<Beat>().Init(beatMap[currentNote], anticipationBeats, spawnBeats);
             activeNotes.Add(currentNote, n);
 
             currentNote++;
@@ -76,7 +78,7 @@ public class KeyBeatManager : MonoBehaviour
         return false;
     }
 
-    public float getDistanceFromCurrentBeat(int beat)
+    public float getDistanceFromCurrentBeat(float beat)
     {
         return Mathf.Abs(conductor.getSongPositionInBeats() - beat);
     }

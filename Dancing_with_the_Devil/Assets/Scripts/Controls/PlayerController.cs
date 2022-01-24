@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         StepmaniaParser s = new StepmaniaParser();
-        Debug.Log(s.ExtractBeatmap().ToString());
     }
     
     void Update()

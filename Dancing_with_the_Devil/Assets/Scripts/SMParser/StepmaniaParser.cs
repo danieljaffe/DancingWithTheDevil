@@ -34,11 +34,16 @@ public class StepmaniaParser
             metadata = metadata.NextMatch();
         }
         
-        int n = 6;
         string[] lines = notes
             .Split(Environment.NewLine.ToCharArray())
-            .Skip(n)
+            .Skip(6)
+            .Reverse()
+            .Skip(2)
+            .Reverse()
+            .ToArray()
             .ToArray();
+        
+        Debug.Log(lines.Length);
 
         notes = string.Join(Environment.NewLine, lines);
         
@@ -62,19 +67,22 @@ public class StepmaniaParser
             new(),
             new()
         };
-
+        
         for (int i = 0; i < smMap.Length; i++)
         {
-            float progression = 4f / smMap[i].Length;
+            Debug.Log("f:" + smMap[i].Length);
+            float progression = 4f / (smMap[i].Length);
+
             for (int j = 0; j < smMap[i].Length; j++)
             {
-                for (int k = 0; k < smMap[i][j].Length; k++)
+                if(smMap[i][j].Length < 4) continue;
+                for (int k = 0; k < 4; k++)
                 {
                     if (smMap[i][j][k] == '1')
                     {
                         meep[k].Add(beat[k]);
-                        beat[k] += progression;
                     }
+                    beat[k] += progression;
                 }
             }
         }
@@ -84,6 +92,12 @@ public class StepmaniaParser
         for (int i = 0; i < 4; i++)
         {
             beatMap[i] = meep[i].ToArray();
+        }
+ 
+        foreach (float[] i in beatMap) {
+            foreach (float j in i) {
+                Debug.Log(j);
+            }
         }
         
         return beatMap;

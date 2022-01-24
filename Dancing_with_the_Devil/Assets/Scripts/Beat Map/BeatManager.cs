@@ -14,18 +14,16 @@ public class BeatManager : MonoBehaviour
     private float inputRange = 0.5f;
     private float anticipationBeats = 2f;
 
-    private int[][] beatMap =
-    {
-        new []{4},
-        new []{4},
-        new []{4, 8, 12, 16},
-        new []{4, 8, 12, 16}
-    };
+    private float[][] beatMap;
     
     // Start is called before the first frame update
     void Start()
     {
         if (noteHit.IsUnityNull()) noteHit = new UnityEvent<float>();
+
+        StepmaniaParser s = new StepmaniaParser();
+        beatMap = s.ExtractBeatmap();
+        
         for (int i = 0; i < keyBeatManagers.Length; i++)
         {
             keyBeatManagers[i].Init(conductor, beatMap[i], inputRange, anticipationBeats);
