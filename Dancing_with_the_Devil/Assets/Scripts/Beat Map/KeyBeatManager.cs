@@ -19,10 +19,12 @@ public class KeyBeatManager : MonoBehaviour
     private int currentNote = 0;
     private int lastNote = -1;
     
-    public void Init(Conductor c, int[] beatMap)
+    public void Init(Conductor c, int[] beatMap, float inputRange, float anticipationBeats)
     {
         this.conductor = c;
         this.beatMap = beatMap;
+        this.inputRange = inputRange;
+        this.anticipationBeats = anticipationBeats;
     }
 
     // Start is called before the first frame update
@@ -35,10 +37,10 @@ public class KeyBeatManager : MonoBehaviour
     
     void Update()
     {
-        if (currentNote + 1 <= beatMap.Length && conductor.getSongPositionInBeats() > beatMap[currentNote] - anticipationBeats)
+        if (currentNote < beatMap.Length && conductor.getSongPositionInBeats() > beatMap[currentNote] - anticipationBeats)
         {
             GameObject n = Instantiate(note, Vector3.zero, Quaternion.identity, transform);
-            n.GetComponent<Beat>().Init(beatMap[currentNote], 2);
+            n.GetComponent<Beat>().Init(beatMap[currentNote], anticipationBeats);
             activeNotes.Add(currentNote, n);
 
             currentNote++;

@@ -10,11 +10,14 @@ public class BeatManager : MonoBehaviour
     
     [SerializeField] private Conductor conductor;
     [SerializeField] private KeyBeatManager[] keyBeatManagers;
+    
+    private float inputRange = 0.5f;
+    private float anticipationBeats = 2f;
 
     private int[][] beatMap =
     {
-        new []{4, 8, 12, 16},
-        new []{1, 5, 10, 12},
+        new []{4},
+        new []{4},
         new []{4, 8, 12, 16},
         new []{4, 8, 12, 16}
     };
@@ -25,7 +28,7 @@ public class BeatManager : MonoBehaviour
         if (noteHit.IsUnityNull()) noteHit = new UnityEvent<float>();
         for (int i = 0; i < keyBeatManagers.Length; i++)
         {
-            keyBeatManagers[i].Init(conductor, beatMap[i]);
+            keyBeatManagers[i].Init(conductor, beatMap[i], inputRange, anticipationBeats);
         }
     }
 

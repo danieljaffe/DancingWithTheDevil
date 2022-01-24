@@ -43,9 +43,9 @@ public class Beat : MonoBehaviour
 
         if (conductor.getSongPositionInBeats() > startBeat)
         {
-            animator.Play("Drop");
+            animator.SetTrigger("Drop");
             
-            animator.speed = 1;
+            animator.speed = 1.2f;
         }
     }
 }
