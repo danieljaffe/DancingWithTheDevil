@@ -1,64 +1,47 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.Design.Serialization;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BeatManager : MonoBehaviour
 {
-    private float inputRange = 0.2f;
-    private float anticipationBeats = 2f;
-
-    [SerializeField] private GameObject note;
-    [SerializeField] private Conductor conductor;
+    public UnityEvent<float> noteHit;
     
-    private int[] beatMap = {4,8,12,16};
-    private int currentNote = 0;
-    private int lastNote = -1;
+    [SerializeField] private Conductor conductor;
+    [SerializeField] private KeyBeatManager[] keyBeatManagers;
 
+    private int[][] beatMap =
+    {
+        new []{4, 8, 12, 16},
+        new []{1, 5, 10, 12},
+        new []{4, 8, 12, 16},
+        new []{4, 8, 12, 16}
+    };
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (noteHit.IsUnityNull()) noteHit = new UnityEvent<float>();
+        for (int i = 0; i < keyBeatManagers.Length; i++)
+        {
+            keyBeatManagers[i].Init(conductor, beatMap[i]);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (currentNote + 1 < beatMap.Length && conductor.getSongPositionInBeats() > beatMap[currentNote] - anticipationBeats)
-        {
-            GameObject n = Instantiate(note, Vector3.zero, Quaternion.identity);
-            n.GetComponent<Beat>().Init(beatMap[currentNote], 2);
-
-            currentNote++;
-        }
+        
     }
 
-    public void CheckNote()
+    public void CheckNote(int buttonNum)
     {
-        int checkedNote = lastNote + 1;
+        float result = -1f;
 
-        for (int i = lastNote + 1; i < beatMap.Length; i++)
+        if (keyBeatManagers[buttonNum].CheckNote(ref result))
         {
-            if (getDistanceFromCurrentBeat(beatMap[i]) < getDistanceFromCurrentBeat(beatMap[checkedNote]))
-            {
-                checkedNote = i;
-            }
-        }
-
-        if (checkedNote > beatMap.Length) return;
-
-        if (getDistanceFromCurrentBeat(beatMap[checkedNote]) < inputRange)
-        {
-            Debug.Log("Hit!");
-            Debug.Log(getDistanceFromCurrentBeat(beatMap[checkedNote]));
-        }
+            noteHit.Invoke(result);
+        };
     }
-
-    public float getDistanceFromCurrentBeat(int beat)
-    {
-        return Mathf.Abs(conductor.getSongPositionInBeats() - beat);
-    }
-
-
 }
