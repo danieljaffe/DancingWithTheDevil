@@ -33,16 +33,11 @@ public class StepmaniaParser
             }
             metadata = metadata.NextMatch();
         }
-        
+
         string[] lines = notes
-            .Split(Environment.NewLine.ToCharArray())
-            .Skip(6)
-            .Reverse()
-            .Skip(2)
-            .Reverse()
-            .ToArray()
-            .ToArray();
-        
+            .Split(Environment.NewLine);
+
+        lines = lines.SubArray(5, lines.Length - 7);
         Debug.Log(lines.Length);
 
         notes = string.Join(Environment.NewLine, lines);
@@ -71,7 +66,7 @@ public class StepmaniaParser
         for (int i = 0; i < smMap.Length; i++)
         {
             Debug.Log("f:" + smMap[i].Length);
-            float progression = 4f / (smMap[i].Length);
+            float progression = 4f / (smMap[i].Length - smMap[i].Length % 4);
 
             for (int j = 0; j < smMap[i].Length; j++)
             {
@@ -101,5 +96,15 @@ public class StepmaniaParser
         }
         
         return beatMap;
+    }
+}
+
+public static class Extensions
+{
+    public static T[] SubArray<T>(this T[] array, int offset, int length)
+    {
+        T[] result = new T[length];
+        Array.Copy(array, offset, result, 0, length);
+        return result;
     }
 }
