@@ -1,17 +1,17 @@
 using UnityEngine;
 [System.Serializable]
 
-public class Health : MonoBehaviour
+public class LoveManager : MonoBehaviour
 {
-    [SerializeField] private int curLove = 2;
-    [SerializeField] private int maxLove = 5;
+    [SerializeField] private double curLove = 2;
+    [SerializeField] private double maxLove = 5;
     [SerializeField] private bool isGameOver;
 
-    // Damages your love
-    public void DamageLove(int love)
+    // Pass a float to increment the love meter. Use negative numbers to decrement.
+    public void UpdateLove(double love)
     {
         // Updates health
-        curLove -= love;
+        curLove += love;
         
         // Prevents health over maximum
         if (curLove > maxLove)
@@ -20,7 +20,7 @@ public class Health : MonoBehaviour
         } 
 
         // Sets dead if character dies
-        else if (curLove < 1)
+        else if (curLove <= 0)
         {
             isGameOver = true;
         }
@@ -32,14 +32,8 @@ public class Health : MonoBehaviour
         }
     }
 
-    // Adds love
-    public void HealLove(int love)
-    {
-        DamageLove(-love);
-    }
-
     // Returns the total love
-    public int GetCurLove()
+    public double GetCurLove()
     {
         return curLove;
     }
