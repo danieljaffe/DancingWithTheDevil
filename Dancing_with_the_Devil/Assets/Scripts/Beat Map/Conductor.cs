@@ -66,4 +66,12 @@ public class Conductor : MonoBehaviour
     {
         return songPositionInBeats;
     }
+
+    public void setBPM(float bpm)
+    {
+        songBpm = bpm;
+
+        //Calculate the number of seconds in each beat
+        secPerBeat = 60f / songBpm;
+    }
 }

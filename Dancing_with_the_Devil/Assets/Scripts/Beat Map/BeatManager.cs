@@ -14,6 +14,8 @@ public class BeatManager : MonoBehaviour
     private float inputRange = 0.5f;
     private float anticipationBeats = 2f;
 
+    private int currentBPM = 0;
+    private float[][] bpms;
     private float[][] beatMap;
     
     // Start is called before the first frame update
@@ -22,7 +24,7 @@ public class BeatManager : MonoBehaviour
         if (noteHit.IsUnityNull()) noteHit = new UnityEvent<float>();
 
         StepmaniaParser s = new StepmaniaParser();
-        beatMap = s.ExtractBeatmap();
+        beatMap = s.ExtractBeatmap(ref bpms);
         
         for (int i = 0; i < keyBeatManagers.Length; i++)
         {
@@ -33,7 +35,12 @@ public class BeatManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (currentBPM < bpms.Length && conductor.getSongPositionInBeats() > bpms[currentBPM][0])
+        {
+            conductor.setBPM(bpms[currentBPM][1]);
+
+            currentBPM++;
+        }
     }
 
     public void CheckNote(int buttonNum)

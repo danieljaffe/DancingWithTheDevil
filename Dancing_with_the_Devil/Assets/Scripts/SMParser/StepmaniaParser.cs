@@ -7,17 +7,15 @@ using UnityEngine;
 
 public class StepmaniaParser
 {
-    public float[][] ExtractBeatmap()
+    public float[][] ExtractBeatmap(ref float[][] setBpms)
     {
             
         // Get the data from the file
-        var stepmania = File.ReadAllText(Application.dataPath + "/excitement.sm");
+        var stepmania = File.ReadAllText(Application.dataPath + "/Butterfly.sm");
         var metadata = new Regex("#.*?;", RegexOptions.Singleline).Match(stepmania);
 
-        // Add the song to the pack
-        var isSongValid = true; // check for validity in the metadata
-
-        string notes = "";
+        List<string> diffnotes = new List<string>();
+        string bpms = "";
         
         while (metadata.Success)
         {
@@ -26,21 +24,45 @@ public class StepmaniaParser
             var key = datum.Substring(0, datum.IndexOf(":")).Trim('#').Trim(':');
             var value = datum.Substring(datum.IndexOf(":")).Trim(':').Trim(';');
             
-            if (key.ToUpper() == "NOTES")
+            switch (key.ToUpper())
             {
-                notes = value;
-                break;
+                case "BPMS":
+                    bpms = value;
+                    break;
+                case "NOTES":
+                    diffnotes.Add(value);
+                    break;
+                default:
+                    break;
             }
             metadata = metadata.NextMatch();
         }
+        
+        //BPM
+        string[] bpmchanges = bpms
+            .Split(",")
+            .ToArray();
+
+        float[][] bpmMap = new float[bpmchanges.Length][];
+        for (int i = 0; i < bpmchanges.Length; i++)
+        {
+            string[] temp = bpmchanges[i].Split("=")
+                .ToArray();
+            bpmMap[i] = new []{
+                float.Parse(temp[0]),
+                float.Parse(temp[1])
+            };
+        }
+
+        setBpms = bpmMap;
+        
+        //Notes
+        string notes = diffnotes[0];
 
         string[] lines = notes
-            .Split(Environment.NewLine);
+            .Split("\n").Skip(6).SkipLast(2).ToArray();
 
-        lines = lines.SubArray(5, lines.Length - 7);
-        Debug.Log(lines.Length);
-
-        notes = string.Join(Environment.NewLine, lines);
+        notes = string.Join("\n", lines);
         
         string[] measures = notes
             .Split("\n,")
@@ -65,7 +87,6 @@ public class StepmaniaParser
         
         for (int i = 0; i < smMap.Length; i++)
         {
-            Debug.Log("f:" + smMap[i].Length);
             float progression = 4f / (smMap[i].Length - smMap[i].Length % 4);
 
             for (int j = 0; j < smMap[i].Length; j++)
@@ -88,13 +109,7 @@ public class StepmaniaParser
         {
             beatMap[i] = meep[i].ToArray();
         }
- 
-        foreach (float[] i in beatMap) {
-            foreach (float j in i) {
-                Debug.Log(j);
-            }
-        }
-        
+
         return beatMap;
     }
 }
