@@ -11,7 +11,7 @@ public class StepmaniaParser
     {
             
         // Get the data from the file
-        var stepmania = File.ReadAllText(Application.dataPath + "/Butterfly.sm");
+        var stepmania = File.ReadAllText(Application.dataPath + "/excitement.sm");
         var metadata = new Regex("#.*?;", RegexOptions.Singleline).Match(stepmania);
 
         List<string> diffnotes = new List<string>();
@@ -57,7 +57,7 @@ public class StepmaniaParser
         setBpms = bpmMap;
         
         //Notes
-        string notes = diffnotes[1];
+        string notes = diffnotes[0];
 
         string[] lines = notes
             .Split("\n").Skip(6).SkipLast(2).ToArray();

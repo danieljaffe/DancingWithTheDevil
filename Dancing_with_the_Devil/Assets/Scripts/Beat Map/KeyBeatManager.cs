@@ -39,7 +39,6 @@ public class KeyBeatManager : MonoBehaviour
     
     void Update()
     {
-        Debug.Log(conductor.getSongPositionInBeats() > beatMap[currentNote] - anticipationBeats - spawnBeats);
         if (currentNote < beatMap.Length && conductor.getSongPositionInBeats() > beatMap[currentNote] - anticipationBeats - spawnBeats)
         {
             GameObject n = Instantiate(note, Vector3.zero, Quaternion.identity, transform);

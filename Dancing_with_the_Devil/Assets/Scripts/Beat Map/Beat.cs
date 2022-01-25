@@ -32,7 +32,6 @@ public class Beat : MonoBehaviour
         animator.Play("Anticipation", -1, 0);
         //Set the speed to 0 so it will only change frames when you next update it
         animator.speed = 0;
-        Debug.Log(conductor.getSongPositionInBeats());
     }
 
     // Update is called once per frame

@@ -39,9 +39,4 @@ public class PlayerController : MonoBehaviour
     {
         BeatManager.CheckNote(3);
     }
-
-    void OnTest()
-    {
-        conductor.Play();
-    }
 }
