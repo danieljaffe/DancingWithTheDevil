@@ -28,6 +28,11 @@ public class Beat : MonoBehaviour
         
         //Load the animator attached to this object
         animator = GetComponent<Animator>();
+        
+        animator.Play("Anticipation", -1, 0);
+        //Set the speed to 0 so it will only change frames when you next update it
+        animator.speed = 0;
+        Debug.Log(conductor.getSongPositionInBeats());
     }
 
     // Update is called once per frame
@@ -43,7 +48,7 @@ public class Beat : MonoBehaviour
             //Set the speed to 0 so it will only change frames when you next update it
             animator.speed = 0;
         }
-        if (conductor.getSongPositionInBeats() >= startBeat - anticipationBeats && conductor.getSongPositionInBeats() <= startBeat)
+        else if (conductor.getSongPositionInBeats() >= startBeat - anticipationBeats && conductor.getSongPositionInBeats() <= startBeat)
         {
             float percentLeft = 1 - (startBeat - conductor.getSongPositionInBeats())/anticipationBeats;
             
@@ -53,7 +58,7 @@ public class Beat : MonoBehaviour
             animator.speed = 0;
         }
 
-        if (conductor.getSongPositionInBeats() > startBeat)
+        else if (conductor.getSongPositionInBeats() > startBeat)
         {
             animator.Play("Drop");
             
