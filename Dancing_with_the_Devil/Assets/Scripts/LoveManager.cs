@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,8 +5,8 @@ using UnityEngine.UI;
 
 public class LoveManager : MonoBehaviour
 {
-    [SerializeField] private double curLove = 60;
-    [SerializeField] private double maxLove = 100;
+    [SerializeField] private float curLove = 60;
+    [SerializeField] private float maxLove = 100;
     [SerializeField] private bool isGameOver;
     [SerializeField] private Slider loveMeter;
 
@@ -18,7 +17,7 @@ public class LoveManager : MonoBehaviour
     }
 
     // Pass a float to increment the love meter. Use negative numbers to decrement.
-    public void UpdateLove(double love)
+    public void UpdateLove(float love)
     {
         // Updates health
         curLove += love;
