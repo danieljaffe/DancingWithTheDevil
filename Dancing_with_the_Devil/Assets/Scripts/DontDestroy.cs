@@ -6,14 +6,7 @@ public class DontDestroy : MonoBehaviour
 {
     private void Awake()
     {
-        GameObject[] objs = GameObject.FindGameObjectsWithTag("Fader");
-
-        if (objs.Length > 1)
-        {
-            Destroy(this.gameObject);
-        }
-
-        DontDestroyOnLoad(this.gameObject);
+        
     }
     // Start is called before the first frame update
     void Start()

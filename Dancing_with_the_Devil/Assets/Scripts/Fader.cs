@@ -10,21 +10,12 @@ public class Fader : MonoBehaviour
     private Animator animator;
     
     // Start is called before the first frame update
-    private void Awake()
-    {
-        GameObject[] objs = GameObject.FindGameObjectsWithTag("Fader");
-
-        if (objs.Length > 1)
-        {
-            Destroy(this.gameObject);
-        }
-
-        DontDestroyOnLoad(this.gameObject);
-    }
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        
+        animator.Play("FadeIn");
     }
 
     // Update is called once per frame
@@ -42,7 +33,5 @@ public class Fader : MonoBehaviour
     public void switchScene2()
     {
         SceneManager.LoadScene(nextScene);
-        
-        animator.Play("FadeIn");
     }
 }
