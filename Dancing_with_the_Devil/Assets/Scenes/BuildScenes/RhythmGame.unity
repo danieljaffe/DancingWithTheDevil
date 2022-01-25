@@ -409,9 +409,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7960d7e68a6ee184daa096906b3ba978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  conductor: {fileID: 0}
-  beatsPerBob: 2
 --- !u!1 &748503187
 GameObject:
   m_ObjectHideFlags: 0
@@ -1000,7 +997,7 @@ PrefabInstance:
     - target: {fileID: 1353664564, guid: 5b77fe2695543ac40a02df8991b27836, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: a5aec6ac5f68f2348aa067315491ab47, type: 3}
+      objectReference: {fileID: 8300000, guid: ccc5f481f2d282449ac8b777c83948b0, type: 3}
     - target: {fileID: 3108799707633439632, guid: 5b77fe2695543ac40a02df8991b27836, type: 3}
       propertyPath: m_RootOrder
       value: 1
