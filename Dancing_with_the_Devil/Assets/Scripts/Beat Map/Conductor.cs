@@ -8,6 +8,8 @@ public class Conductor : MonoBehaviour
 {
 
     [SerializeField] private float songBpm = 60f;
+    [SerializeField] private Fader f;
+    [SerializeField] private LoveManager lm;
     
     private AudioSource musicSource;
     
@@ -29,6 +31,8 @@ public class Conductor : MonoBehaviour
 
         //Calculate the number of seconds in each beat
         secPerBeat = 60f / songBpm;
+        
+        Play();
     }
 
     void Update()
@@ -40,8 +44,20 @@ public class Conductor : MonoBehaviour
 
             //determine how many beats since the song started
             songPositionInBeats = beatsSinceLastBPMChange + songPosition / secPerBeat;
-            
-            
+
+            if (!musicSource.isPlaying)
+            {
+                if (lm.GetCurLove() > 66)
+                {
+                    f.switchScene("GoodEnding");
+                }else if (lm.GetCurLove() > 33)
+                {
+                    f.switchScene("NeutralEnding");
+                }else
+                {
+                    f.switchScene("BadEnding");
+                }
+            }
         }
     }
     

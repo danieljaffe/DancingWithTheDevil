@@ -6,9 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Title Screen.unity
+    guid: cf446d71968e3cf4c8bc1607525076de
+  - enabled: 1
     path: Assets/Scenes/BuildScenes/VisNov.unity
     guid: 34f89208d68c2254fa40751203b0db00
   - enabled: 1
     path: Assets/Scenes/BuildScenes/RhythmGame.unity
     guid: 22d7a6393837f564fb6eb42f21f1e39a
+  - enabled: 1
+    path: Assets/Scenes/BuildScenes/BadEnding.unity
+    guid: 344d2f31e36b4c14996f3093c153e64c
+  - enabled: 1
+    path: Assets/Scenes/BuildScenes/GoodEnding.unity
+    guid: 4722bfb20a941254d95af75c74368113
+  - enabled: 1
+    path: Assets/Scenes/BuildScenes/NeutralEnding.unity
+    guid: fd0b904d21f89c74195aad38d4ba236d
   m_configObjects: {}
