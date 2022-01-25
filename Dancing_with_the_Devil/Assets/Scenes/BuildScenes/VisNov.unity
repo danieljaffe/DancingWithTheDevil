@@ -410,6 +410,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8173464341933900269, guid: 6a340cd261751ea4489181b3479efe3d, type: 3}
+      propertyPath: startNode
+      value: Prolouge
+      objectReference: {fileID: 0}
+    - target: {fileID: 8173464341933900269, guid: 6a340cd261751ea4489181b3479efe3d, type: 3}
       propertyPath: yarnProject
       value: 
       objectReference: {fileID: 7545569452688597077, guid: a6b91447986d4e84880297def9677d27, type: 3}
