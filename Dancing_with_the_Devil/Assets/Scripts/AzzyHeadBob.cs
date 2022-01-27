@@ -21,7 +21,7 @@ public class AzzyHeadBob : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //Start playing the current animation from wherever the current conductor loop is
         animator.Play("Bob", -1, (conductor.getSongPositionInBeats() % beatsPerBob)/beatsPerBob);

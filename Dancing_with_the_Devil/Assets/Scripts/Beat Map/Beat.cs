@@ -35,7 +35,7 @@ public class Beat : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (conductor.getSongPositionInBeats() >= startBeat - anticipationBeats - spawnBeats &&
             conductor.getSongPositionInBeats() <= startBeat - anticipationBeats)

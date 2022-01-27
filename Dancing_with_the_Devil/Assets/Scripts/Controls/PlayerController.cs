@@ -6,6 +6,9 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Conductor conductor;
     [SerializeField] private BeatManager BeatManager;
+    [SerializeField] private GameObject settings;
+
+    private bool paused = false;
     
     // Lifecycle
     void Start()
@@ -38,5 +41,35 @@ public class PlayerController : MonoBehaviour
     void On_4()
     {
         BeatManager.CheckNote(3);
+    }
+
+    void OnPause()
+    {
+        if (paused)
+        {
+            unpause();
+        }
+        else
+        {
+            pause();
+        }
+    }
+    
+    //Methods
+
+    public void pause()
+    {
+        paused = true;
+        settings.SetActive(true);
+        conductor.Pause();
+        Time.timeScale = 0;
+    }
+    
+    public void unpause()
+    {
+        paused = false;
+        settings.SetActive(false);
+        conductor.Resume();
+        Time.timeScale = 1;
     }
 }

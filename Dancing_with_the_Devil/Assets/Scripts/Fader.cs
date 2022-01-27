@@ -30,6 +30,12 @@ public class Fader : MonoBehaviour
         animator.Play("FadeOut");
     }
 
+    public void quickSwitch(string s)
+    {
+        SceneManager.LoadScene(s);
+        Time.timeScale = 1;
+    }
+
     public void switchScene2()
     {
         SceneManager.LoadScene(nextScene);

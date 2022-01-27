@@ -2,10 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design.Serialization;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class KeyBeatManager : MonoBehaviour
 {
+    public UnityEvent<float> noteMiss;
+
     private float spawnBeats = 1f;
     
     private float inputRange = 0.5f;
@@ -32,19 +36,22 @@ public class KeyBeatManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (noteMiss.IsUnityNull()) noteMiss = new UnityEvent<float>();
         
     }
 
     // Update is called once per frame
     
-    void Update()
+    void FixedUpdate()
     {
         if (currentNote < beatMap.Length && conductor.getSongPositionInBeats() > beatMap[currentNote] - anticipationBeats - spawnBeats)
         {
             GameObject n = Instantiate(note, Vector3.zero, Quaternion.identity, transform);
             n.GetComponent<Beat>().Init(beatMap[currentNote], anticipationBeats, spawnBeats);
             activeNotes.Add(currentNote, n);
-
+            
+            noteMiss.Invoke(-0.25f);
+            
             currentNote++;
         }
     }

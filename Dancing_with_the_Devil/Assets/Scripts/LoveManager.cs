@@ -17,7 +17,7 @@ public class LoveManager : MonoBehaviour
         loveMeter.maxValue = maxLove;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         loveMeter.value = curLove;
     }
@@ -26,7 +26,7 @@ public class LoveManager : MonoBehaviour
     public void UpdateLove(float love)
     {
         // Updates health
-        curLove += (0.5f-love)/5f - 0.05f;
+        curLove += love;
 
         // Prevents health over maximum
         if (curLove > maxLove)

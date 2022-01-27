@@ -18,6 +18,7 @@ public class Conductor : MonoBehaviour
     private float beatsSinceLastBPMChange;
 
     private bool playing;
+    private float pauseBPM;
     
     //Lifecycle
 
@@ -26,13 +27,15 @@ public class Conductor : MonoBehaviour
         //Load the AudioSource attached to the Conductor GameObject
         musicSource = GetComponent<AudioSource>();
 
+        musicSource.volume = PlayerPrefs.GetFloat("gameVolume");
+
         //Calculate the number of seconds in each beat
         secPerBeat = 60f / songBpm;
         
         Play();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (playing)
         {
@@ -77,6 +80,26 @@ public class Conductor : MonoBehaviour
         playing = false;
     }
 
+    public void Pause()
+    {
+        pauseBPM = songBpm;
+        
+        musicSource.Pause();
+
+        playing = false;
+        
+        setBPM(0.000000001f);
+    }
+
+    public void Resume()
+    {
+        musicSource.Play();
+
+        playing = true;
+        
+        setBPM(pauseBPM);
+    }
+
     //Getters and Setters
 
     public float getSongPositionInBeats()
@@ -94,5 +117,10 @@ public class Conductor : MonoBehaviour
         secPerBeat = 60f / songBpm;
         
         dspSongTime = (float)AudioSettings.dspTime;
+    }
+
+    public void setVolume(float volume)
+    {
+        musicSource.volume = volume;
     }
 }
