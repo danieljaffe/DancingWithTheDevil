@@ -50,8 +50,6 @@ public class KeyBeatManager : MonoBehaviour
             n.GetComponent<Beat>().Init(beatMap[currentNote], anticipationBeats, spawnBeats);
             activeNotes.Add(currentNote, n);
             
-            noteMiss.Invoke(-0.25f);
-            
             currentNote++;
         }
     }

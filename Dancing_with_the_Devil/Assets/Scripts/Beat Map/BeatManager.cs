@@ -49,7 +49,7 @@ public class BeatManager : MonoBehaviour
 
         if (keyBeatManagers[buttonNum].CheckNote(ref result))
         {
-            noteHit.Invoke(0.75f-Mathf.Abs(result));
+            noteHit.Invoke(0.5f-Mathf.Abs(result));
         }
         else
         {
