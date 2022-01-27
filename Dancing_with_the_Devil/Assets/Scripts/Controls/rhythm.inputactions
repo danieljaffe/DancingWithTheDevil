@@ -51,7 +51,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Test",
+                    "name": "Skip",
                     "type": "Button",
                     "id": "60946738-efa6-4d52-aeb8-4e99da766d34",
                     "expectedControlType": "Button",
@@ -118,12 +118,12 @@
                 },
                 {
                     "name": "",
-                    "id": "9c6920d4-bb13-499d-b203-8e060bfc2991",
-                    "path": "<Keyboard>/space",
+                    "id": "94ea6a54-f632-4b75-a49d-eb119df11f28",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Test",
+                    "action": "Skip",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

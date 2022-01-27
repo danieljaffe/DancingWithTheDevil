@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class VisNovPlayerController : MonoBehaviour
 {
+    public UnityEvent skip;
     
     [SerializeField] private GameObject settings;
 
@@ -12,7 +15,7 @@ public class VisNovPlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(skip.IsUnityNull()) skip = new UnityEvent();
     }
 
     // Update is called once per frame
@@ -21,8 +24,6 @@ public class VisNovPlayerController : MonoBehaviour
         
     }
     
-    
-
     void OnPause()
     {
         if (paused)
@@ -33,6 +34,11 @@ public class VisNovPlayerController : MonoBehaviour
         {
             pause();
         }
+    }
+
+    void OnSkip()
+    {
+        skip.Invoke();
     }
     
     //Methods
